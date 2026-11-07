@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio thiết kế</title>
+
+  <!-- Phông chữ Be Vietnam Pro: hiển thị tiếng Việt đẹp. Nếu không có mạng, trang sẽ tự dùng phông có sẵn trên máy. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== MÀU SẮC CHÍNH (đổi màu ở đây là đổi cả trang) ===== */
+    :root {
+      --do: #d62828;          /* đỏ chủ đạo */
+      --do-dam: #a91e1e;      /* đỏ đậm khi rê chuột */
+      --do-nhat: #fdecec;     /* đỏ rất nhạt cho nền phụ */
+      --trang: #ffffff;
+      --chu: #1f1f1f;         /* màu chữ chính */
+      --chu-phu: #5c5c5c;     /* màu chữ phụ */
+      --vien: #ececec;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      background: var(--trang);
+      color: var(--chu);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .khung { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+    /* ===== THANH MENU ===== */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--vien);
+    }
+    .menu {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo { font-weight: 800; font-size: 20px; color: var(--do); text-decoration: none; }
+    .menu nav a {
+      margin-left: 24px; color: var(--chu); text-decoration: none; font-weight: 500; font-size: 15px;
+    }
+    .menu nav a:hover { color: var(--do); }
+
+    /* ===== PHẦN ĐẦU TRANG ===== */
+    .dau-trang { padding: 110px 0 100px; }
+    .nhan {
+      display: inline-block; background: var(--do-nhat); color: var(--do);
+      font-weight: 700; font-size: 14px; padding: 6px 14px; border-radius: 999px; margin-bottom: 20px;
+    }
+    h1 { font-size: clamp(46px, 9vw, 84px); line-height: 1.1; font-weight: 800; margin-bottom: 20px; }
+    h1 span { color: var(--do); white-space: nowrap; } /* giữ "thiết kế" trên cùng một dòng */
+    .gioi-thieu { font-size: 20px; color: var(--chu-phu); max-width: 560px; margin-bottom: 36px; }
+
+    .nut {
+      display: inline-block; background: var(--do); color: var(--trang);
+      font: inherit; font-weight: 700; font-size: 16px;
+      padding: 14px 32px; border: 2px solid var(--do); border-radius: 999px; cursor: pointer;
+      transition: background 0.25s, color 0.25s, transform 0.25s;
+    }
+    /* Rê chuột lên nút: nền chuyển trắng, chữ chuyển đỏ */
+    .nut:hover { background: var(--trang); color: var(--do); transform: translateY(-2px); }
+
+    /* ===== TIÊU ĐỀ MỖI PHẦN ===== */
+    section { padding: 80px 0; }
+    .tieu-de-phan { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+    .tieu-de-phan::after {
+      content: ""; display: block; width: 48px; height: 4px; background: var(--do);
+      border-radius: 4px; margin-top: 12px;
+    }
+    .mo-ta-phan { color: var(--chu-phu); margin-bottom: 40px; }
+
+    /* ===== KỸ NĂNG ===== */
+    .nen-nhat { background: #fafafa; }
+    .luoi-ky-nang { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .ky-nang {
+      background: var(--trang); border: 1px solid var(--vien); border-radius: 16px; padding: 28px;
+    }
+    .ky-nang .so { color: var(--do); font-weight: 800; font-size: 14px; letter-spacing: 1px; }
+    .ky-nang h3 { font-size: 20px; margin: 6px 0 8px; }
+    .ky-nang p { color: var(--chu-phu); font-size: 15px; }
+
+    /* ===== DỰ ÁN ===== */
+    .luoi-du-an { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .du-an {
+      border: 1px solid var(--vien); border-radius: 16px; overflow: hidden; background: var(--trang);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .du-an:hover { box-shadow: 0 12px 30px rgba(214, 40, 40, 0.12); transform: translateY(-4px); }
+
+    /* Khu vực để thêm ảnh sau */
+    .cho-anh {
+      aspect-ratio: 4 / 3;
+      background: var(--do-nhat);
+      border-bottom: 2px dashed #f0b4b4;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--do); font-size: 14px; font-weight: 500; text-align: center; gap: 6px;
+    }
+    .cho-anh svg { width: 40px; height: 40px; }
+    .cho-anh img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .noi-dung-du-an { padding: 22px 24px 26px; }
+    .noi-dung-du-an .loai { color: var(--do); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+    .noi-dung-du-an h3 { font-size: 20px; margin: 4px 0 6px; }
+    .noi-dung-du-an p { color: var(--chu-phu); font-size: 15px; }
+
+    /* ===== LIÊN HỆ ===== */
+    .lien-he { background: var(--do); color: var(--trang); text-align: center; }
+    .lien-he .tieu-de-phan::after { background: var(--trang); margin: 12px auto 0; }
+    .lien-he p { font-size: 19px; opacity: 0.95; }
+
+    footer { text-align: center; padding: 24px 20px; color: var(--chu-phu); font-size: 14px; }
+
+    /* ===== ĐIỆN THOẠI (màn hình nhỏ hơn 760px) ===== */
+    @media (max-width: 760px) {
+      body { font-size: 16px; }
+      .menu nav a { margin-left: 16px; font-size: 14px; }
+      .dau-trang { padding: 64px 0 60px; }
+      .gioi-thieu { font-size: 18px; }
+      section { padding: 56px 0; }
+      .tieu-de-phan { font-size: 26px; }
+      .luoi-ky-nang, .luoi-du-an { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 420px) {
+      .menu nav a:first-child { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- THANH MENU -->
+  <header>
+    <div class="khung menu">
+      <a href="#" class="logo">Portfolio</a>
+      <nav>
+        <a href="#ky-nang">Kỹ năng</a>
+        <a href="#du-an">Dự án</a>
+        <a href="#lien-he">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PHẦN ĐẦU TRANG -->
+  <div class="khung dau-trang">
+    <span class="nhan">Thiết kế &amp; Marketing</span>
+    <h1>Portfolio <span>thiết kế</span></h1>
+    <p class="gioi-thieu">Tôi làm thiết kế đồ họa và nội dung marketing.</p>
+    <button class="nut" id="nut-xem-du-an">Xem dự án</button>
+  </div>
+
+  <!-- KỸ NĂNG -->
+  <section class="nen-nhat" id="ky-nang">
+    <div class="khung">
+      <h2 class="tieu-de-phan">Kỹ năng</h2>
+      <p class="mo-ta-phan">Những việc tôi làm tốt nhất.</p>
+      <div class="luoi-ky-nang">
+        <div class="ky-nang">
+          <div class="so">01</div>
+          <h3>Thiết kế social</h3>
+          <p>Hình ảnh cho Facebook, Instagram, TikTok.</p>
+        </div>
+        <div class="ky-nang">
+          <div class="so">02</div>
+          <h3>Viết nội dung</h3>
+          <p>Caption, bài đăng và kịch bản ngắn.</p>
+        </div>
+        <div class="ky-nang">
+          <div class="so">03</div>
+          <h3>Dựng video</h3>
+          <p>Video ngắn giới thiệu sản phẩm, thương hiệu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DỰ ÁN -->
+  <section id="du-an">
+    <div class="khung">
+      <h2 class="tieu-de-phan">Dự án</h2>
+      <p class="mo-ta-phan">Một số dự án minh họa.</p>
+      <div class="luoi-du-an">
+
+        <!-- DỰ ÁN 1 -->
+        <div class="du-an">
+          <div class="cho-anh">
+            <!-- THÊM ẢNH: xóa từ <svg> đến dòng "Ảnh sẽ được bổ sung", rồi dán: <img src="ten-anh.jpg" alt="Thiết kế bài Facebook"> -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
+            Ảnh sẽ được bổ sung
+          </div>
+          <div class="noi-dung-du-an">
+            <div class="loai">Social</div>
+            <h3>Thiết kế bài Facebook</h3>
+            <p>Bộ hình ảnh cho bài đăng fanpage.</p>
+          </div>
+        </div>
+
+        <!-- DỰ ÁN 2 -->
+        <div class="du-an">
+          <div class="cho-anh">
+            <!-- THÊM ẢNH: xóa từ <svg> đến dòng "Ảnh sẽ được bổ sung", rồi dán: <img src="ten-anh.jpg" alt="Poster sản phẩm"> -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
+            Ảnh sẽ được bổ sung
+          </div>
+          <div class="noi-dung-du-an">
+            <div class="loai">Đồ họa</div>
+            <h3>Poster sản phẩm</h3>
+            <p>Poster quảng bá sản phẩm mới.</p>
+          </div>
+        </div>
+
+        <!-- DỰ ÁN 3 -->
+        <div class="du-an">
+          <div class="cho-anh">
+            <!-- THÊM ẢNH: xóa từ <svg> đến dòng "Ảnh sẽ được bổ sung", rồi dán: <img src="ten-anh.jpg" alt="Video giới thiệu"> -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
+            Ảnh sẽ được bổ sung
+          </div>
+          <div class="noi-dung-du-an">
+            <div class="loai">Video</div>
+            <h3>Video giới thiệu</h3>
+            <p>Video ngắn giới thiệu thương hiệu.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIÊN HỆ -->
+  <section class="lien-he" id="lien-he">
+    <div class="khung">
+      <h2 class="tieu-de-phan">Liên hệ</h2>
+      <p>Thông tin sẽ được cập nhật</p>
+    </div>
+  </section>
+
+  <footer>© <span id="nam"></span> Portfolio thiết kế</footer>
+
+  <script>
+    // Bấm nút "Xem dự án" thì cuộn mượt xuống phần Dự án
+    document.getElementById("nut-xem-du-an").addEventListener("click", function () {
+      document.getElementById("du-an").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Tự ghi năm hiện tại ở cuối trang
+    document.getElementById("nam").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
